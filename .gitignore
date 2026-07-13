@@ -1,0 +1,15 @@
+# Generated Xcode project (regenerate with `xcodegen generate`)
+*.xcodeproj
+
+# Xcode / build
+build/
+DerivedData/
+*.xcuserstate
+xcuserdata/
+.swiftpm/
+
+# macOS
+.DS_Store
+
+# Feature worktrees (D4G4 convention)
+features/
