@@ -4,6 +4,11 @@ Casts a subtle, adjustable shadow over your static menu bar and Dock to ease OLE
 wear — clearing the instant your cursor is over them. A lightweight menu-bar agent
 for high-end OLED displays (built for an LG 39GX950B-B, works on any Mac).
 
+<p>
+  <a href="../../releases/latest/download/Umbra.dmg"><img src="https://img.shields.io/badge/download-macOS%20.dmg-blue?style=flat-square&logo=apple" alt="Download macOS .dmg"></a>
+  <img src="https://img.shields.io/badge/platform-macOS%2014%2B-lightgrey?style=flat-square" alt="macOS 14+">
+</p>
+
 ## How it works (and why it dims, not brightens)
 
 OLED burn-in is differential sub-pixel aging, roughly proportional to
