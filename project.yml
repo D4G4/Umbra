@@ -11,16 +11,15 @@ settings:
     SWIFT_VERSION: "6.0"
     MARKETING_VERSION: "1.0"
     CURRENT_PROJECT_VERSION: "1"
-    # Ad-hoc for local dev (no account/cert needed). For RELEASE, sign under the
-    # Blink team's Developer ID once that account + a "Developer ID Application"
-    # cert are set up on the build machine, then use:
-    #   CODE_SIGN_STYLE: Automatic
-    #   DEVELOPMENT_TEAM: 6V6FZW3FFN
-    #   CODE_SIGN_IDENTITY: "Developer ID Application"
-    #   ENABLE_HARDENED_RUNTIME: true   (required for notarization)
-    CODE_SIGN_STYLE: Manual
-    CODE_SIGN_IDENTITY: "-"
-    CODE_SIGNING_REQUIRED: NO
+    # Developer ID signing for notarized release builds, under the shared
+    # D4G4 Developer ID (same identity used by Blink/TMEject). The
+    # release script overrides CODE_SIGN_IDENTITY=Manual at archive time
+    # for deterministic CI/local builds; Automatic here keeps `xcodebuild
+    # build` (plain Debug dev builds) working without a provisioning step.
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: 6V6FZW3FFN
+    CODE_SIGN_IDENTITY: "Developer ID Application"
+    ENABLE_HARDENED_RUNTIME: true
 
 packages:
   MenuBarKit:
@@ -56,11 +55,13 @@ targets:
         CFBundleShortVersionString: "1.0"
         CFBundleVersion: "1"
         NSHumanReadableCopyright: ""
-        # Sparkle auto-update. Replace these before shipping:
-        #   1. SUPublicEDKey — run Sparkle's `generate_keys`; paste the public key here.
-        #   2. SUFeedURL — host appcast.xml there; sign releases with `sign_update`.
-        SUFeedURL: "https://umbramacos.com/appcast.xml"
-        SUPublicEDKey: ""
+        # Sparkle auto-update. Appcast hosted on GitHub Pages (gh-pages
+        # branch), same pattern as TMEject. SUPublicEDKey is the shared
+        # D4G4 EdDSA signing key already used by Blink/TMEject — per
+        # Sparkle's own guidance ("you only need one signing key, no
+        # matter how many apps"), reused rather than generating a new one.
+        SUFeedURL: "https://d4g4.github.io/Umbra/appcast.xml"
+        SUPublicEDKey: "agdJmL4C1ciE/qX6oEcxkZgc8fu264R45/vCfg09BKY="
         SUEnableAutomaticChecks: true
         SUScheduledCheckInterval: 86400
 
