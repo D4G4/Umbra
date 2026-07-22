@@ -29,9 +29,9 @@
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedURL</key>
-	<string>https://umbramacos.com/appcast.xml</string>
+	<string>https://d4g4.github.io/Umbra/appcast.xml</string>
 	<key>SUPublicEDKey</key>
-	<string></string>
+	<string>agdJmL4C1ciE/qX6oEcxkZgc8fu264R45/vCfg09BKY=</string>
 	<key>SUScheduledCheckInterval</key>
 	<integer>86400</integer>
 </dict>
