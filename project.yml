@@ -52,8 +52,13 @@ targets:
         CFBundleName: Umbra
         CFBundleDisplayName: Umbra Guard
         LSMinimumSystemVersion: "14.0"
-        CFBundleShortVersionString: "1.0"
-        CFBundleVersion: "1"
+        # Wired to build settings, not hardcoded — CI/release.sh injects the
+        # build number via CURRENT_PROJECT_VERSION, and Sparkle compares
+        # appcast sparkle:version against CFBundleVersion. A hardcoded value
+        # here would make every future release report sparkle:version=1,
+        # and Sparkle would tell every installed user "up to date" forever.
+        CFBundleShortVersionString: "$(MARKETING_VERSION)"
+        CFBundleVersion: "$(CURRENT_PROJECT_VERSION)"
         NSHumanReadableCopyright: ""
         # Sparkle auto-update. Appcast hosted on GitHub Pages (gh-pages
         # branch), same pattern as TMEject. SUPublicEDKey is the shared
