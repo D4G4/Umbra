@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+     xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"
+     xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>Umbra</title>
+    <link>https://d4g4.github.io/Umbra/appcast.xml</link>
+    <description>Umbra release feed</description>
+    <language>en</language>
+    <item>
+      <title>Umbra v1.0</title>
+      <link>https://github.com/D4G4/Umbra/releases/tag/v1.0</link>
+      <sparkle:version>1</sparkle:version>
+      <sparkle:shortVersionString>1.0</sparkle:shortVersionString>
+      <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
+      <pubDate>Wed, 22 Jul 2026 23:27:54 +0000</pubDate>
+      <description><![CDATA[<p style="margin-bottom:0">Full release on <a href="https://github.com/D4G4/Umbra/releases/tag/v1.0">GitHub</a>.</p>]]></description>
+      <enclosure url="https://github.com/D4G4/Umbra/releases/download/v1.0/Umbra.dmg"
+                 type="application/octet-stream"
+                 sparkle:edSignature="uEydiWVIL/NwrqkryAhQoJu2DJk9Jxl5n7I2NYiuXlaPLt/oiHQffe6UADnDL3/TN7w964oNtC2u2QIN2rx7AA==" length="2307611" />
+    </item>
+  </channel>
+</rss>
