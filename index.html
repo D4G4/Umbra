@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Umbra — a quiet shadow for your menu bar and Dock</title>
+<meta name="description" content="A lightweight macOS menu bar utility that dims your static menu bar and Dock to ease OLED wear — and clears instantly the moment your cursor is there." />
+<meta name="theme-color" content="#09090b" />
+<link rel="icon" type="image/png" href="assets/icon.png" />
+<link rel="apple-touch-icon" href="assets/icon.png" />
+
+<!-- Open Graph — iMessage, Slack, Discord, LinkedIn etc. consume this -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://d4g4.github.io/Umbra/" />
+<meta property="og:title" content="Umbra — a quiet shadow for your menu bar and Dock" />
+<meta property="og:description" content="A lightweight macOS menu bar utility that dims your static menu bar and Dock to ease OLED wear — and clears instantly the moment your cursor is there." />
+<meta property="og:image" content="https://d4g4.github.io/Umbra/assets/og-banner.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Umbra — a quiet shadow for your menu bar and Dock" />
+<meta property="og:site_name" content="Umbra" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter Card — also consumed by macOS Messages for the rich preview -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Umbra — a quiet shadow for your menu bar and Dock" />
+<meta name="twitter:description" content="A lightweight macOS menu bar utility that dims your static menu bar and Dock to ease OLED wear — and clears instantly the moment your cursor is there." />
+<meta name="twitter:image" content="https://d4g4.github.io/Umbra/assets/og-banner.png" />
+<meta name="twitter:image:alt" content="Umbra — a quiet shadow for your menu bar and Dock" />
+
+<link rel="stylesheet" href="style.css" />
+<script>document.documentElement.className = 'js paged';</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ============================================================ MENU BAR (= the site nav) -->
+<div class="macbar" id="macbar" role="navigation" aria-label="Primary">
+  <div class="macbar-left">
+    <a class="logo" href="#hero" aria-label="Umbra home">
+      <span class="orb" aria-hidden="true"></span>
+    </a>
+    <a class="app" href="#hero">Umbra</a>
+    <a class="menu" href="#mechanic">The Mechanic</a>
+    <a class="menu" href="#features">Features</a>
+    <a class="menu" href="#levels">Levels</a>
+  </div>
+  <div class="macbar-right">
+    <span class="sysicon" aria-hidden="true"><svg width="19" height="12" viewBox="0 0 26 14" fill="none"><rect x="1" y="3" width="20" height="8" rx="2.2" stroke="currentColor" stroke-width="1.1" opacity="0.6"/><rect x="2.6" y="4.6" width="13" height="4.8" rx="1" fill="currentColor"/><rect x="22.4" y="5.4" width="1.6" height="3.2" rx="0.8" fill="currentColor" opacity="0.6"/></svg></span>
+    <span class="sysicon" aria-hidden="true"><svg width="15" height="12" viewBox="0 0 18 14" fill="none"><circle cx="9" cy="10.6" r="1.3" fill="currentColor"/><path d="M5.2 7.4a5.4 5.4 0 0 1 7.6 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><path d="M3 5.1a8.6 8.6 0 0 1 12 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+    <span class="sysicon" aria-hidden="true"><svg width="14" height="13" viewBox="0 0 15 14" fill="none"><circle cx="6.4" cy="6" r="4.2" stroke="currentColor" stroke-width="1.3"/><path d="M9.6 9.2 12.4 12" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg></span>
+    <a class="umbra-item active" id="umbraIcon" href="#hero" aria-label="Umbra menu bar icon">
+      <span class="orb sm" aria-hidden="true"></span>
+    </a>
+    <a class="menu dl" href="#download">Download</a>
+    <span class="clock" id="macbarClock" aria-hidden="true">Thu 2:14 PM</span>
+  </div>
+</div>
+
+<!-- page dots -->
+<nav class="pagedots" aria-label="Page navigation">
+  <a href="#hero" class="active" aria-label="Top"></a>
+  <a href="#mechanic" aria-label="The mechanic"></a>
+  <a href="#features" aria-label="Features"></a>
+  <a href="#levels" aria-label="Levels"></a>
+  <a href="#honest" aria-label="Honest note"></a>
+  <a href="#download" aria-label="Download"></a>
+</nav>
+
+<!-- ============================================================ LIVE POPOVER (persistent, JS-driven) -->
+<div class="pop--hidden" id="livePop" aria-live="polite" aria-label="Umbra menu bar popover preview">
+  <div class="pop-arrow"></div>
+  <div id="popBody"></div>
+</div>
+
+<main id="main">
+
+<!-- ============================================================ HERO -->
+<section class="page page-hero" id="hero" aria-labelledby="hero-heading">
+  <div class="desktop-wall" aria-hidden="true"></div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="hero-glow2" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-head reveal">
+      <div class="eyebrow">macOS menu bar utility</div>
+      <h1 id="hero-heading">Dim what&rsquo;s static.&nbsp;<br/><span class="muted">Clear when it&rsquo;s not.</span></h1>
+      <p class="hero-lead">Umbra casts a steady, adjustable shadow over your menu bar and Dock &mdash; the two things on screen that never change, and the two most likely to burn into an OLED panel. Move your cursor near either one and the shadow lifts, instantly.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://github.com/D4G4/Umbra/releases/latest/download/Umbra.dmg" download id="download-hero">
+          <span class="dl-ico" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 18 18" fill="none"><path d="M9 2.5V11M9 11 5.5 7.5M9 11l3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 13.5h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          Download for Mac
+        </a>
+        <a class="btn btn-ghost" href="#mechanic">See how it works</a>
+      </div>
+      <p class="mobile-hint">Umbra is a Mac app — open this page on your Mac to install.</p>
+      <div class="hero-meta">
+        <span>macOS 14+ (Sonoma, Sequoia, Tahoe)</span><span class="dot"></span>
+        <span>Universal</span><span class="dot"></span>
+        <span>Free &amp; open source</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ THE MECHANIC -->
+<section class="page mech-sec" id="mechanic" aria-labelledby="mechanic-heading">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="mech-grid">
+      <div class="mech-copy reveal">
+        <div class="eyebrow">Why it dims, not brightens</div>
+        <h2 id="mechanic-heading">Subtracting light is the only way to slow it down.</h2>
+        <p>OLED burn-in is differential sub-pixel aging &mdash; roughly proportional to how much extra light a pixel emits over time. A compositing overlay can only slow that down by <strong>subtracting</strong> luminance from static regions; adding light would make aging worse. So Umbra draws a steady, dark scrim &mdash; never lighter than the background, never blue, the fastest-aging channel.</p>
+        <div class="mech-note">No animation, on purpose &mdash; moving the dark layer can&rsquo;t relocate the bright content beneath it, so a consistent dim lowers average luminance the most.</div>
+      </div>
+      <div class="mech-vis reveal">
+        <div class="demo-card" tabindex="0">
+          <div class="demo-menubar">
+            <div class="demo-mb-icons"><span></span><span></span><span></span></div>
+            <div class="demo-scrim"></div>
+          </div>
+          <div class="demo-desktop"></div>
+          <div class="demo-dock">
+            <div class="demo-dock-icons"><span></span><span></span><span></span><span></span><span></span></div>
+            <div class="demo-scrim dock-scrim"></div>
+          </div>
+          <div class="demo-hint">Hover to see it clear <span aria-hidden="true">&uarr;</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ FEATURES -->
+<section class="page page-features" id="features" aria-labelledby="features-heading">
+  <div class="wrap">
+    <div class="feat-head reveal">
+      <div class="eyebrow">What it does</div>
+      <h2 id="features-heading">One idea, done quietly.</h2>
+      <p>No control panel. No dashboard. Umbra watches your cursor and shades two strips of screen &mdash; nothing else.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card accent reveal">
+        <div class="feat-ico" aria-hidden="true"><span class="orb sm"></span></div>
+        <h3>Menu Bar &amp; Dock, together</h3>
+        <p>Two transparent, click-through overlays sit above your status items and Dock, below dropdown menus &mdash; native menus and Control Center stay fully clickable.</p>
+        <span class="tag">Window level 26 · click-through</span>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-ico" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 18 18" fill="none"><rect x="2.5" y="8.2" width="13" height="1.6" rx="0.8" fill="currentColor" opacity="0.35"/><rect x="2.5" y="8.2" width="7.5" height="1.6" rx="0.8" fill="currentColor"/><circle cx="10" cy="9" r="2.4" fill="currentColor"/></svg></div>
+        <h3>One slider, real range</h3>
+        <p>A single 0&ndash;50% Dimming slider sets the scrim depth, with a live caption that tells you what each level actually suits.</p>
+        <span class="tag">Default 22% · Noticeable</span>
+      </div>
+      <div class="feat-card reveal">
+        <div class="feat-ico" aria-hidden="true"><svg width="19" height="19" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.6" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.6v3.6l2.6 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Runs quietly, forever</h3>
+        <p>Pure background agent &mdash; no Dock icon, no Cmd-Tab entry, ever. Updates itself in place via Sparkle, so it just keeps working.</p>
+        <span class="tag">LSUIElement · Sparkle auto-update</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ LEVELS -->
+<section class="page levels-sec" id="levels" aria-labelledby="levels-heading">
+  <div class="wrap">
+    <div class="levels-grid">
+      <div class="levels-head reveal">
+        <div class="eyebrow">The dimming slider</div>
+        <h2 id="levels-heading">You set the depth.<br/>Four ranges to land in.</h2>
+        <p>Watch the menu bar, top-right &mdash; the popover is live and dragging its slider. Every level reads by darkness and caption, not colour alone.</p>
+        <div class="levels-hint" id="levelsHint">Now showing &mdash; <b>Noticeable</b></div>
+      </div>
+      <div class="levels-row" id="levelsList">
+        <div class="level-item" data-level="barely">
+          <div class="level-bar"><i style="width:8%"></i></div>
+          <div><div class="level-name">Barely there <span class="level-range">~0&ndash;8%</span></div><div class="level-desc">Tandem OLED, low-risk panels</div></div>
+        </div>
+        <div class="level-item" data-level="light">
+          <div class="level-bar"><i style="width:20%"></i></div>
+          <div><div class="level-name">Light <span class="level-range">~8&ndash;20%</span></div><div class="level-desc">Most OLED displays, everyday use</div></div>
+        </div>
+        <div class="level-item" data-level="noticeable">
+          <div class="level-bar"><i style="width:35%"></i></div>
+          <div><div class="level-name">Noticeable <span class="level-range">~20&ndash;35%, default 22%</span></div><div class="level-desc">Regular WOLED / QD-OLED prone to retention</div></div>
+        </div>
+        <div class="level-item" data-level="heavy">
+          <div class="level-bar"><i style="width:50%"></i></div>
+          <div><div class="level-name">Heavy <span class="level-range">~35&ndash;50%</span></div><div class="level-desc">High-risk static UIs &mdash; clearly darker</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ HONEST NOTE -->
+<section class="page honest-sec" id="honest" aria-labelledby="honest-heading">
+  <div class="wrap honest-wrap">
+    <div class="reveal">
+      <div class="eyebrow">An honest note</div>
+      <h2 id="honest-heading">The effect is real.<br/>The magnitude is modest.</h2>
+      <p>On a <strong>Tandem OLED</strong> (dual emission layer, e.g. the LG 39GX950B) the panel already halves per-layer stress, so the benefit there is small. It matters more on regular single-layer WOLED / QD-OLED. The biggest wins are still native anyway: dark-mode menu bar, auto-hiding Dock, lower panel brightness, and your display&rsquo;s own pixel-shift. Treat Umbra as a modest dimming aid &mdash; not guaranteed burn-in &ldquo;protection.&rdquo;</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ DOWNLOAD + FOOTER -->
+<section class="page page-download" id="download" aria-labelledby="download-heading">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="wrap cta-inner">
+    <div class="reveal">
+      <h2 id="download-heading">A shadow you&rsquo;ll forget is there.</h2>
+      <p>Free. Lives in your menu bar. Clears the moment you need it to.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://github.com/D4G4/Umbra/releases/latest/download/Umbra.dmg" download id="download-main">
+          <span class="dl-ico" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 18 18" fill="none"><path d="M9 2.5V11M9 11 5.5 7.5M9 11l3.5-3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.5 13.5h11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+          Download for Mac
+        </a>
+      </div>
+      <div class="cta-reqs">
+        <span>macOS 14+ (Sonoma, Sequoia, Tahoe)</span><span class="dot"></span>
+        <span>Universal binary</span><span class="dot"></span>
+        <span>Open source</span>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="wrap">
+      <a class="brand" href="#hero">
+        <span class="mark" aria-hidden="true"><span class="orb sm"></span></span>
+        Umbra
+      </a>
+      <div class="foot-links">
+        <a href="#mechanic">The Mechanic</a>
+        <a href="#features">Features</a>
+        <a href="#levels">Levels</a>
+        <a href="https://github.com/D4G4/Umbra" rel="noopener">GitHub</a>
+      </div>
+      <div class="foot-copy">&copy; <span id="year">2026</span> Umbra</div>
+    </div>
+  </footer>
+</section>
+
+</main>
+
+<script>
+  /* ===== LIVE MENU BAR CLOCK ===== */
+  (function liveClock(){
+    const el = document.getElementById('macbarClock');
+    if (!el) return;
+    const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    function tick(){
+      const d = new Date();
+      const h12 = ((d.getHours() + 11) % 12) + 1;
+      const m = d.getMinutes().toString().padStart(2, '0');
+      const ampm = d.getHours() < 12 ? 'AM' : 'PM';
+      el.textContent = days[d.getDay()] + ' ' + h12 + ':' + m + ' ' + ampm;
+    }
+    tick();
+    setInterval(tick, 15000);
+  })();
+
+  const macbar = document.getElementById('macbar');
+  const dots = [...document.querySelectorAll('.pagedots a')];
+  const litItems = [...document.querySelectorAll('.macbar .app, .macbar .menu')];
+  const pages = [...document.querySelectorAll('.page')];
+
+  /* ===== LIVE POPOVER — continuous slider sweep + level highlight ===== */
+  const livePop = document.getElementById('livePop');
+  const popBody = document.getElementById('popBody');
+  const barIcon = document.getElementById('umbraIcon');
+  const levelsList = document.getElementById('levelsList');
+  const levelsHint = document.getElementById('levelsHint');
+  const isWide = () => window.innerWidth > 880;
+
+  function bucketFor(pct){
+    if (pct <= 8) return { key: 'barely', name: 'Barely there' };
+    if (pct <= 20) return { key: 'light', name: 'Light' };
+    if (pct <= 35) return { key: 'noticeable', name: 'Noticeable' };
+    return { key: 'heavy', name: 'Heavy' };
+  }
+
+  function popHTML(){
+    return `
+      <div class="pop-head">
+        <span class="orb sm" aria-hidden="true"></span>
+        <div><div class="pop-title">Umbra</div><div class="pop-sub">Menu Bar &amp; Dock</div></div>
+      </div>
+      <div class="pop-preview">
+        <div class="pop-mb"><span></span><span></span><span></span><div class="pop-scrim" id="popScrimMb"></div></div>
+        <div class="pop-dock"><span></span><span></span><span></span><span></span><div class="pop-scrim" id="popScrimDock"></div></div>
+      </div>
+      <div class="pop-rows">
+        <div class="pop-row"><span>Menu Bar</span><span class="switch on"></span></div>
+        <div class="pop-row"><span>Dock</span><span class="switch" id="popDockSwitch"></span></div>
+      </div>
+      <div class="pop-slider-block">
+        <div class="pop-slider-lab"><span>Dimming</span><b id="popPct">22%</b></div>
+        <div class="pop-track"><i class="pop-fill" id="popFill"></i><i class="pop-thumb" id="popThumb"></i></div>
+        <div class="pop-cap" id="popCap">Noticeable &mdash; regular WOLED / QD-OLED prone to retention</div>
+      </div>
+      <div class="pop-foot">
+        <div class="pop-foot-row">Launch at Login <span class="switch on sm"></span></div>
+        <div class="pop-foot-row">Open Log</div>
+        <div class="pop-foot-row">Quit</div>
+      </div>`;
+  }
+  popBody.innerHTML = popHTML();
+
+  const CAPTIONS = {
+    barely: 'Barely there — Tandem OLED, low-risk panels',
+    light: 'Light — most OLED displays, everyday use',
+    noticeable: 'Noticeable — regular WOLED / QD-OLED prone to retention',
+    heavy: 'Heavy — high-risk static UIs, clearly darker',
+  };
+
+  let dockOn = false;
+  function renderTick(pct){
+    const b = bucketFor(pct);
+    const pctEl = document.getElementById('popPct');
+    const fill = document.getElementById('popFill');
+    const thumb = document.getElementById('popThumb');
+    const cap = document.getElementById('popCap');
+    const scrimMb = document.getElementById('popScrimMb');
+    const scrimDock = document.getElementById('popScrimDock');
+    if (!pctEl) return;
+    pctEl.textContent = Math.round(pct) + '%';
+    fill.style.width = (pct / 50 * 100) + '%';
+    thumb.style.left = (pct / 50 * 100) + '%';
+    cap.textContent = CAPTIONS[b.key];
+    scrimMb.style.opacity = pct / 50 * 0.82;
+    if (scrimDock) scrimDock.style.opacity = dockOn ? pct / 50 * 0.82 : 0;
+
+    if (levelsList) [...levelsList.querySelectorAll('.level-item')].forEach(it => it.classList.toggle('lit', it.dataset.level === b.key));
+    if (levelsHint) levelsHint.innerHTML = 'Now showing &mdash; <b>' + b.name + '</b>';
+  }
+
+  let rafId = null, playing = false, startTs = null;
+  const PERIOD = 9000; // ms for one full dim-up/dim-down sweep
+  function frame(ts){
+    if (!playing) return;
+    if (startTs === null) startTs = ts;
+    const t = ((ts - startTs) % PERIOD) / PERIOD; // 0..1
+    const pct = 25 - 25 * Math.cos(t * Math.PI * 2); // 0..50, eased sweep
+    dockOn = t > 0.5;
+    const dockSwitch = document.getElementById('popDockSwitch');
+    if (dockSwitch) dockSwitch.classList.toggle('on', dockOn);
+    renderTick(pct);
+    rafId = requestAnimationFrame(frame);
+  }
+  function startPlay(){ if (playing) return; playing = true; startTs = null; rafId = requestAnimationFrame(frame); }
+  function stopPlay(){ playing = false; if (rafId) cancelAnimationFrame(rafId); renderTick(22); }
+  renderTick(22);
+
+  // ---- scroll-driven active section (robust; no IntersectionObserver) ----
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (Math.min(i % 3, 2) * 80) + 'ms';
+    if (el.getBoundingClientRect().top >= window.innerHeight * 0.9) el.classList.add('pre');
+  });
+  function updateReveal(){
+    const h = window.innerHeight;
+    document.querySelectorAll('.reveal.pre').forEach(el => {
+      if (el.getBoundingClientRect().top < h * 0.9) el.classList.remove('pre');
+    });
+  }
+  function activeSection(){
+    const vc = window.innerHeight / 2;
+    let best = null, bestDist = Infinity;
+    pages.forEach(p => {
+      const r = p.getBoundingClientRect();
+      const d = Math.abs((r.top + r.height / 2) - vc);
+      if (d < bestDist) { bestDist = d; best = p; }
+    });
+    return best;
+  }
+  let lastId = null;
+  function onScroll(){
+    updateReveal();
+    const sec = activeSection(); if (!sec) return;
+    const id = sec.id;
+    dots.forEach(d => d.classList.toggle('active', d.getAttribute('href') === '#' + id));
+    macbar.classList.toggle('solid', id !== 'hero');
+    litItems.forEach(m => m.classList.toggle('lit', m.getAttribute('href') === '#' + id));
+    if (id !== lastId) {
+      lastId = id;
+      const showPop = (id === 'hero' || id === 'mechanic' || id === 'levels') && isWide();
+      livePop.classList.toggle('pop--hidden', !showPop);
+      if (showPop) startPlay(); else stopPlay();
+    }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  document.addEventListener('scroll', onScroll, { passive: true, capture: true });
+  window.addEventListener('resize', onScroll);
+  requestAnimationFrame(() => { updateReveal(); onScroll(); });
+  setTimeout(() => { updateReveal(); onScroll(); }, 60);
+  setTimeout(() => { updateReveal(); onScroll(); }, 300);
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // align the open popover's arrow with the Umbra icon in the menu bar
+  function positionPopover() {
+    const icon = document.getElementById('umbraIcon');
+    const pop = document.getElementById('livePop');
+    const arrow = pop && pop.querySelector('.pop-arrow');
+    if (!icon || !pop || !arrow) return;
+    if (window.innerWidth <= 880) { pop.style.right = ''; arrow.style.right = ''; return; }
+    const ic = icon.getBoundingClientRect();
+    const iconCenter = ic.left + ic.width / 2;
+    const popRight = 30;
+    pop.style.right = popRight + 'px';
+    const arrowRight = (window.innerWidth - popRight) - iconCenter - 8;
+    arrow.style.right = Math.max(16, arrowRight) + 'px';
+  }
+  positionPopover();
+  window.addEventListener('load', positionPopover);
+  window.addEventListener('resize', positionPopover);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(positionPopover);
+</script>
+</body>
+</html>
